@@ -1,0 +1,42 @@
+{% extends 'FrontendBundle:Main:layout.html.twig' %}
+{%block body%}
+
+<!-- Content section Start --> 
+    <section id="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-4 col-md-4 col-md-offset-4">
+            <div class="page-login-form box">
+              <h3>
+                connexion
+              </h3>
+              <form action="{{ path("fos_user_security_check") }}" method="post" class="login-form">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+    <div class="form-group">
+                  <div class="input-icon">
+                    <i class="icon fa fa-user"></i>
+    <input type="text" id="username" name="_username"  class="form-control" placeholder="pseudo" value="{{ last_username }}" required="required" />
+  </div>
+                </div> 
+    <div class="form-group">
+                  <div class="input-icon">
+                    <i class="icon fa fa-unlock-alt"></i>
+    <input type="password" id="password" class="form-control" placeholder="mot de passe" name="_password" required="required" />
+</div>
+                </div> 
+    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    
+
+    <input type="submit" id="_submit" name="_submit" value="connexion" class="btn btn-common log-btn" />
+</form>
+              <ul class="form-links">
+                <li class="pull-left"><a href="signup.html">s'incrire sur esprit market?</a></li>
+                <li class="pull-right"><a href="forgot-password.html">mot de passe oublié?</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ {%endblock%}

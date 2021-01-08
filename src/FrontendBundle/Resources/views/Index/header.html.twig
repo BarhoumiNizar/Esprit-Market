@@ -1,0 +1,44 @@
+<div class="row search-bar">
+            <div class="advanced-search">
+            <form class="search-form" method="post" action="{{path('backend_recherche')}}">
+                <div class="col-md-3 col-sm-6 search-col">
+                <div class="input-group-addon search-category-container">
+                    <label class="styled-select">
+                    <select class="dropdown-product selectpicker" name="categorie" >
+                        <option value="0">Tous les Categories</option>
+                    <option value="livre">Livre</option>
+                  <option>cours</option>
+                   <option value="evenemment">événemment</option>
+                   <option value="Application">Application</option>
+                   <option value="Telephone">Téléphone</option>
+                   <option value="PC_portable">PC Portable</option>
+                   <option value="Roubotique">Roubotique</option>
+                    </select>                                    
+                    </label>
+                </div>
+                </div>
+                <div class="col-md-3 col-sm-6 search-col">
+                <div class="input-group-addon search-category-container">
+                    <label class="styled-select location-select">
+                    <input type="text" list="browsers" placeholder="Taper lieu" class="form-control keyword" name="lieu">
+                    <datalist id="browsers">
+                             
+                              {%for pos in res%}
+                               <option value="{{pos.pos}}">
+                               {%endfor%}
+                              </datalist>                                  
+                    </label>
+                </div>
+
+
+                </div>
+                <div class="col-md-3 col-sm-6 search-col">
+                <input class="form-control keyword" name="cle" value="" placeholder="Taper clé" type="text">
+                <i class="fa fa-search"></i>
+                </div>
+                <div class="col-md-3 col-sm-6 search-col">
+                <button class="btn btn-common btn-search btn-block" type="submit"><strong>Rechercher</strong></button>
+                </div>
+            </form>
+            </div>
+        </div>

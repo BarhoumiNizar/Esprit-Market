@@ -1,0 +1,15 @@
+{% extends 'FrontendBundle:Main:layout.html.twig' %}
+{% block body %}
+
+    {{ include('FrontendBundle:Index:intro-section.html.twig') }}
+    <div class="wrapper">
+
+        {{ include('FrontendBundle:Index:categories-section.html.twig') }}
+        {{ include('FrontendBundle:Index:featured-section.html.twig') }}
+        {{ include('FrontendBundle:Index:services-section.html.twig') }}
+        {{ include('FrontendBundle:Index:location-section.html.twig') }}
+
+    </div>
+    {{ include('FrontendBundle:Index:counter-section.html.twig') }}
+
+{% endblock %}

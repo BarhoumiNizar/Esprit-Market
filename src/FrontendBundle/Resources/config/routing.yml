@@ -1,0 +1,85 @@
+frontend_homepage:
+    path:     /
+    defaults: { _controller: FrontendBundle:Main:index }
+
+frontend_about:
+    path:     /about
+    defaults: { _controller: FrontendBundle:Main:about }
+
+frontend_login:
+    path:     /login2
+    defaults: { _controller: FrontendBundle:Login:login }
+
+
+frontend_annonce:
+    path:     /Annonces
+    defaults: { _controller: FrontendBundle:Annonces:ajout }
+
+
+frontend_produit:
+    path:     /produit
+    defaults: { _controller: FrontendBundle:Produit:ajoutPdt }
+
+frontend_test:
+    path:     /test
+    defaults: { _controller: FrontendBundle:User:Enregistrer }
+
+
+frontend_commande:
+    path:     /commande
+    defaults: { _controller: FrontendBundle:Commande:ajoutCmd }
+backend_accueil:
+    path:     /accueil
+    defaults: { _controller: FrontendBundle:User:Backend }
+User_Update:
+    path:     /modifier
+    defaults: { _controller: FrontendBundle:User:UpdateUser }
+backend_mes_annonces:
+    path:     /myAnnoces
+    defaults: { _controller: FrontendBundle:User:MesAnnonces }
+backend_delete_annonces:
+    path:     /delete/{id}
+    defaults: { _controller: FrontendBundle:User:deleteAnnonce }
+backend_delete_annonces_favoris:
+    path:     /delete_favoris/{id}
+    defaults: { _controller: FrontendBundle:AnnoncesUser:deletefavoris }
+backend_desactiver_compte:
+    path:     /desactiver
+    defaults: { _controller: FrontendBundle:User:desactiver_compte }
+backend_sucess_annonce:
+    path:     /sucess
+    defaults: { _controller: FrontendBundle:User:Sucess }
+backend_get_annonces:
+    path:     /annonces
+    defaults: { _controller: FrontendBundle:Annonces:getAnnonces }
+backend_detail_annonces:
+    path:     /annonce/{id}
+    defaults: { _controller: FrontendBundle:Annonces:detailAnnonce }
+backend_savegarde_annonces:
+    path:     /sauvegarde/{annonce}/{user}
+    defaults: { _controller: FrontendBundle:Annonces:savgarder }
+backend_getsavegarde_annonces:
+    path:     /recherche_sauvegarder
+    defaults: { _controller: FrontendBundle:Annonces:getsauvgarder }
+backend_deletesavegarde_annonces:
+    path:     /delete_sauvegarder/{id}
+    defaults: { _controller: FrontendBundle:Annonces:deletesauvegarde }
+backend_favoris_annonces:
+    path:     /recherche_favoris
+    defaults: { _controller: FrontendBundle:Annonces:getfavoris }
+backend_detail_annoncessauvegarder:
+    path:     /sauvegarder/{id}
+    defaults: { _controller: FrontendBundle:Annonces:detailsauvegarde }
+backend_recherche:
+    path:     /recherche
+    defaults: { _controller: FrontendBundle:Recherche:recherche }
+backend_modifier_annonces:
+    path:     /modifier/{id}
+    defaults: { _controller: FrontendBundle:Annonces:modifier }
+backend_like_annonce:
+    path:     /likes/{id}
+    defaults: { _controller: FrontendBundle:Annonces:likesAnnonce }
+
+test:
+    path:     /test/{id}
+    defaults: { _controller: FrontendBundle:Annonces:testAnnonce }

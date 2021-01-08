@@ -1,0 +1,188 @@
+{% extends 'FrontendBundle:Main:layout.html.twig' %}
+{%block body%}
+<script>
+var geocoder;
+var map;
+// initialisation de la carte Google Map de départ
+function initialiserCarte() {
+  geocoder = new google.maps.Geocoder();
+  // Ici j'ai mis la latitude et longitude du vieux Port de Marseille pour centrer la carte de départ
+  var latlng = new google.maps.LatLng({{resultat.annonce.coordVille}});
+  var mapOptions = {
+    zoom      : 14,
+    center    : latlng,
+    mapTypeId : google.maps.MapTypeId.ROADMAP
+  }
+  // map-canvas est le conteneur HTML de la carte Google Map
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+}
+ 
+
+// Lancement de la construction de la carte google map
+
+google.maps.event.addDomListener(window, 'load', initialiserCarte);
+</script>
+  <!-- Start Content -->
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <!-- Product Info Start -->
+          <div class="product-info">
+            <div class="col-sm-8">
+              <div class="inner-box ads-details-wrapper">
+                <h2>{{resultat.annonce.titre}}</h2>
+                <p class="item-intro"></p>
+                <div id="owl-demo" class="owl-carousel owl-theme">
+                   {%if resultat.annonce.categorieAnnonce !='evenemment'%}
+                    <div class="item">
+                      <img src="{{asset('assets/img/product/img1.jpg')}}" alt="">
+                    </div>
+                    <div class="item">
+                      <img src="{{asset('assets/img/product/img2.jpg')}}" alt="">
+                    </div>
+                    <div class="item">
+                      <img src="{{asset('assets/img/product/img3.jpg')}}" alt="">
+                    </div>
+                    {%endif%}
+                         {%if resultat.annonce.categorieAnnonce =='evenemment'%}
+                         <div id="map-canvas" style="float:left;height:420px;width:100%"></div>
+                    {%endif%}
+                </div>
+              </div>
+
+              <div class="Ads-Details">
+                <h2 class="title-2"><strong>Ads Detsils</strong></h2>
+                  <div class="row">
+                  <div class="ads-details-info col-md-8">
+                    <p>{{resultat.annonce.description}}</p>
+                    <ul class="list-circle">
+                      <li><i class="fa fa-check-circle"></i> 256GB PCIe flash storage</li>
+                      <li><i class="fa fa-check-circle"></i> 2.7 GHz dual-core Intel Core i5 processor</li>
+                      <li><i class="fa fa-check-circle"></i> Turbo Boost up to 3.1GHz</li>
+                      <li><i class="fa fa-check-circle"></i> Intel Iris Graphics 6100</li>
+                      <li><i class="fa fa-check-circle"></i> 8GB memory (up from 4GB in 2013 model)</li>
+                      <li><i class="fa fa-check-circle"></i> 10 hour battery life</li>
+                      <li><i class="fa fa-check-circle"></i> 13.3" Retina Display</li>
+                      <li><i class="fa fa-check-circle"></i> Intect Box</li>
+                      <li><i class="fa fa-check-circle"></i> 1 Year international warranty</li>
+                  </div>
+                  <div class="col-md-4">
+                    <aside class="panel panel-body panel-details">
+                      <ul>
+                        <li>
+                        {{resultat.annonce.nbrVue}}
+                        <p class=" no-margin "><strong>Prix:</strong> {{resultat.annonce.prix}}<sup>dt</sup></p>
+                        </li>
+                        <li>
+                        <p class="no-margin"><strong>Type:</strong> <span style="color:blue">{{resultat.annonce.categorieAnnonce}}</span></p>
+                        </li>
+                        <li>
+                        {%if resultat.annonce.ville !=null%}
+                        <p class="no-margin"><strong>Lieu:</strong> <a href="#">{{resultat.annonce.ville}}</a></p>
+                        {%endif%}
+                        </li>
+                         
+                        <li>
+                        <p class=" no-margin "><strong>Condition:</strong> New</p>
+                        </li>
+                        <li>
+                        <p class="no-margin"><strong>Brand:</strong> <a href="#">Apple</a></p>
+                        </li>
+                      </ul>
+                    </aside>
+
+                    <div class="ads-action">
+                      <ul class="list-border">
+                        <li>
+                          <a href="#"> <i class=" fa fa-phone"></i> {{resultat.annonce.telUser}} </a> </li>
+                        <li>
+                        <li>
+                          <a href="#"> <i class="fa fa-heart-o"></i> favoris</a> </li>
+                        <li>
+                  
+                       
+                        
+                          
+                          <a href="{{path('backend_deletesavegarde_annonces',{'id':resultat.id})}}"> <font color=blue><i class="fa fa-star-o"></i> sauvegarder</font> </a></li>
+                      
+                        
+                        <li>
+                          <a href="#"> <i class="fa fa-share-alt"></i> partager </a>
+                      <div class="social-link">  
+                      <a class="twitter" target="_blank" data-original-title="twitter" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-twitter"></i></a>
+                      <a class="facebook" target="_blank" data-original-title="facebook" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-facebook"></i></a>
+                      <a class="google" target="_blank" data-original-title="google-plus" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-google"></i></a>
+                      <a class="linkedin" target="_blank" data-original-title="linkedin" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-linkedin"></i></a>
+                      </div>
+
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="inner-box">
+                <div class="widget-title">
+                  <h4>Advertisement</h4>
+                </div>
+                <img src="assets/img/img1.jpg" alt="">
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="inner-box">
+                <div class="widget-title">
+                  <h4>Random Ads</h4>
+                </div>
+                
+                <ul class="featured-list">
+                  <li>
+                    <img alt="" src="assets/img/featured/img1.jpg">
+                    <div class="hover">
+                      <a href="#"><span>$49</span></a>
+                    </div>
+                  </li>
+                  <li>
+                    <img alt="" src="assets/img/featured/img2.jpg">
+                    <div class="hover">
+                      <a href="#"><span>$49</span></a>
+                    </div>
+                  </li>
+                  <li>
+                    <img alt="" src="assets/img/featured/img3.jpg">
+                    <div class="hover">
+                      <a href="#"><span>$49</span></a>
+                    </div>
+                  </li>
+                  <li>
+                    <img alt="" src="assets/img/featured/img4.jpg">
+                    <div class="hover">
+                      <a href="#"><span>$49</span></a>
+                    </div>
+                  </li>
+                  <li>
+                    <img alt="" src="assets/img/featured/img5.jpg">
+                    <div class="hover">
+                      <a href="#"><span>$49</span></a>
+                    </div>
+                  </li>
+                  <li>
+                    <img alt="" src="assets/img/featured/img6.jpg">
+                    <div class="hover">
+                      <a href="#"><span>$49</span></a>
+                    </div>
+                  </li>
+                </ul>             
+              </div>
+            </div>
+          </div>
+          <!-- Product Info End -->
+        </div>
+      </div>         
+    </div>
+    <!-- End Content -->
+
+
+
+{%endblock%}

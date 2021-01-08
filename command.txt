@@ -1,0 +1,6 @@
+// clean cache
+php app/console cache:clear --env=dev
+
+
+// create new bundle
+php app/console generate:bundle

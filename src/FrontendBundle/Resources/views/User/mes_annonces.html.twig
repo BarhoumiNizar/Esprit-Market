@@ -1,0 +1,151 @@
+{% extends 'FrontendBundle:Main:layout.html.twig' %}
+{%block body%}
+ <!-- Start Content -->
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3 page-sideabr">
+            <aside>
+              <div class="inner-box">
+                <div class="user-panel-sidebar">
+                  <div class="collapse-box">
+                    <h5 class="collapset-title no-border">My Classified <a aria-expanded="true" class="pull-right" data-toggle="collapse" href="#myclassified"><i class="fa fa-angle-down"></i></a></h5>
+                    <div aria-expanded="true" id="myclassified" class="panel-collapse collapse in">
+                      <ul class="acc-list">
+                        <li class="active">
+                          <a href="{{path('backend_accueil')}}"><i class="fa fa-home"></i> votre profil</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="collapse-box">
+                    <h5 class="collapset-title">Mes annonces <a aria-expanded="true" class="pull-right" data-toggle="collapse" href="#myads"><i class="fa fa-angle-down"></i></a></h5>
+                    <div aria-expanded="true" id="myads" class="panel-collapse collapse in">
+                      <ul class="acc-list">
+                        <li>
+                          <a href="{{path('backend_mes_annonces')}}"><i class="fa fa-credit-card"></i> Mes annonces <span class="badge">{{row}}</span></a>
+                        </li>
+                        <li>
+                          <a href="{{path('backend_favoris_annonces')}}"><i class="fa fa-heart-o"></i> favoris <span class="badge">{{rw}}</span></a>
+                        </li>
+                        <li>
+                          <a href="{{path('backend_getsavegarde_annonces')}}"><i class="fa fa-star-o"></i> Recherches sauvegardées <span class="badge">{{rows}}</span></a>
+                        </li>
+                
+                        
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="collapse-box">
+                    <h5 class="collapset-title">Désactiver votre compte <a aria-expanded="true" class="pull-right" data-toggle="collapse" href="#close"><i class="fa fa-angle-down"></i></a></h5>
+                    <div aria-expanded="true" id="close" class="panel-collapse collapse in">
+                      <ul class="acc-list">
+                        <li>
+                          <a href="{{path('backend_desactiver_compte')}}"><i class="fa fa-close"></i> Désactiver votre compte</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="inner-box">
+                <div class="widget-title">
+                  <h4>Advertisement</h4>
+                </div>
+                <img src="{{asset('assets/img/img1.jpg')}}" alt="">
+              </div>
+            </aside>
+          </div>
+          <div class="col-sm-9 page-content">
+            <div class="inner-box">
+              <h2 class="title-2"><i class="fa fa-credit-card"></i> Mes annonces</h2>
+              <div class="table-responsive">
+                <div class="table-action">
+                  <div class="checkbox">
+                    <label for="checkAll">
+                      <input id="checkAll" onclick="checkAll(this)" type="checkbox">
+                      Sélectionner: tous | <a href="#" class="btn btn-xs btn-danger">supprimer <i class="fa fa-close"></i></a>
+                    </label>
+                  </div>
+                  <div class="table-search pull-right col-xs-7">
+                    <div class="form-group">
+                      <label class="col-xs-5 control-label text-right">chercher <br>
+                        <a title="clear filter" class="clear-filter" href="#clear">[clear]</a> 
+                      </label>
+                      <div class="col-xs-7 searchpan">
+                        <input class="form-control" id="filter" type="text">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <table class="table table-striped table-bordered add-manage-table">
+                  <thead>
+                    <tr>
+                      <th data-type="numeric"></th>
+                      <th>Photo</th>
+                      <th>détails annonce</th>
+                      <th>Prix</th>
+                      <th>Option</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {%for line in resultat%}
+                    <tr>
+                      <td class="add-img-selector">
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox">
+                          </label>
+                        </div>
+                      </td>
+                      <td class="add-img-td">
+                        <a href="#">
+                        {%if line.fichier!=null %}
+                          <img class="img-responsive" src="{{asset('bundles/fichier_Annonces/'~line.fichier)}}" alt="img">
+                         {%elseif line.fichier1!=null %}
+                          <img class="img-responsive" src="{{asset('bundles/fichier_Annonces/'~line.fichier1)}}" alt="img">
+                           {%elseif line.fichier2!=null %}
+                          <img class="img-responsive" src="{{asset('bundles/fichier_Annonces/'~line.fichier2)}}" alt="img">
+                           {%elseif line.fichier3!=null %}
+                          <img class="img-responsive" src="{{asset('bundles/fichier_Annonces/'~line.fichier3)}}" alt="img">
+                           {%elseif line.fichier4!=null %}
+                          <img class="img-responsive" src="{{asset('bundles/fichier_Annonces/'~line.fichier4)}}" alt="img">
+                        {%else%}
+                             <img class="img-responsive" src="{{asset('bundles/fichier_Annonces/image.jpg')}}" alt="img">
+
+                        {%endif%}
+                        </a>
+                      </td>
+                      <td class="ads-details-td">
+                        <h4><a href="{{path('backend_detail_annonces',{'id':line.id})}}">{{line.titre}}</a></h4>
+                        <p> <strong> Ajouté Le </strong>:
+                        {{line.dateAnnonce}} </p>
+                        <p> <strong>Visiteurs </strong>: 221 <strong>Situé dans:</strong> {{line.ville}}</p>
+                      </td>
+                      <td class="price-td">
+                        <strong> {{line.prix}}<sup>Dt</sup></strong>
+                      </td>
+                      <td class="action-td">
+                        <p><a href="{{path('backend_modifier_annonces',{'id':line.id})}}" class="btn btn-primary btn-xs"> <i class="fa fa-pencil-square-o"></i> modifier</a></p>
+                        <p><a class="btn btn-info btn-xs"> <i class="fa fa-share-square-o"></i> Share</a></p>
+                        <p><a onclick="if(!confirm('voulez-vous supprimer')) return false" class="btn btn-danger btn-xs" href="{{path('backend_delete_annonces',{'id':line.id})}}"> <i class=" fa fa-trash"></i> Delete</a></p>
+                       <p><a href="{{path('backend_detail_annonces',{'id':line.id})}}"class="btn btn-primary btn-xs"> <i class="fa fa-pencil-square-o"></i> Detail</a></p>
+                      </td>
+                    </tr>
+                    {%endfor%}
+                    
+                      
+                      
+                  </tbody>
+                </table>
+              </div>               
+            </div>
+          </div>
+        </div>  
+      </div>      
+    </div>
+    <!-- End Content -->
+
+
+
+{%endblock%}

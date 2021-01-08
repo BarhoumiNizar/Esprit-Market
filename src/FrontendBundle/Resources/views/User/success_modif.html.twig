@@ -1,0 +1,19 @@
+{% extends 'FrontendBundle:Main:layout.html.twig' %}
+{%block body%}
+<section id="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+           <div class="inner-box posting"  style="height:500px;">
+              <div class="alert alert-success alert-lg" role="alert" style="position:relative;top:50px;width:500px;margin:auto;height:300px;border-radius:12px" >
+              <h2 class="postin-title" style="line-height:200px;font-weight:bold"><center>✔ Votre <span style="color:black;">"{{categorie}}"</span> est modifié avec succés<center></h2>
+             
+            </div>
+             <a style="float:right;position:relative;top:150px" href="{{path('backend_accueil')}}">Retour Accueil</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{%endblock%}

@@ -1,0 +1,206 @@
+{% extends 'FrontendBundle:Main:layout.html.twig' %}
+{%block body%}
+<script type="text/javascript" src="{{ asset('assets/js/jquery-min.js') }}"></script> 
+   <style>
+    .photo{display:none}
+    </style>
+<script>
+
+    $(window).load(function(){
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+             
+            reader.onload = function (e) {
+                $('#ph').attr('src', e.target.result);
+                
+            }
+             
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+$("#photo").change(function(){
+      readURL(this);
+    });
+    });   
+
+
+    </script>
+<div id="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3 page-sideabr">
+            <aside>
+              <div class="inner-box">
+                <div class="user-panel-sidebar">
+                  <div class="collapse-box">
+                    <h5 class="collapset-title no-border">My Classified <a aria-expanded="true" class="pull-right" data-toggle="collapse" href="#myclassified"><i class="fa fa-angle-down"></i></a></h5>
+                    <div aria-expanded="true" id="myclassified" class="panel-collapse collapse in">
+                      <ul class="acc-list">
+                        <li class="active">
+                          <a href="{{path('backend_accueil')}}"><i class="fa fa-home"></i> votre profil</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="collapse-box">
+                    <h5 class="collapset-title">Mes annonces <a aria-expanded="true" class="pull-right" data-toggle="collapse" href="#myads"><i class="fa fa-angle-down"></i></a></h5>
+                    <div aria-expanded="true" id="myads" class="panel-collapse collapse in">
+                      <ul class="acc-list">
+                        <li>
+                          <a href="{{path('backend_mes_annonces')}}"><i class="fa fa-credit-card"></i> Mes annonces <span class="badge">{{row}}</span></a>
+                        </li>
+                        <li>
+                          <a href="{{path('backend_favoris_annonces')}}"><i class="fa fa-heart-o"></i> favoris <span class="badge">{{rw}}</span></a>
+                        </li>
+                        <li>
+                          <a href="{{path('backend_getsavegarde_annonces')}}"><i class="fa fa-star-o"></i> Recherches sauvegardées <span class="badge">{{rows}}</span></a>
+                        </li>
+                
+                        
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="collapse-box">
+                    <h5 class="collapset-title">Désactiver votre compte <a aria-expanded="true" class="pull-right" data-toggle="collapse" href="#close"><i class="fa fa-angle-down"></i></a></h5>
+                    <div aria-expanded="true" id="close" class="panel-collapse collapse in">
+                      <ul class="acc-list">
+                        <li>
+                          <a href="{{path('backend_desactiver_compte')}}"><i class="fa fa-close"></i> Désactiver votre compte</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="inner-box">
+                <div class="widget-title">
+                  <h4>Advertisement</h4>
+                </div>
+                <img src="{{asset('assets/img/img1.jpg')}}" alt="">
+              </div>
+            </aside>
+          </div>
+          <div class="col-sm-9 page-content">
+            <div class="inner-box">
+              <div class="usearadmin">
+               <h3><a href="#">
+               {%if app.user.photo!=null%}
+               <img class="userimg" src="{{asset('bundles/Photo_Users/'~app.user.photo)}}" alt="">
+               {%else%}
+                <img class="userimg" src="{{asset('bundles/Photo_Users/photo_vide.jpg')}}" alt="">
+
+               {%endif%}
+                {{app.user.username}}</a></h3>
+              </div>
+            </div>
+            <div class="inner-box">
+              <div class="welcome-msg">
+                <h3 class="page-sub-header2 clearfix no-padding">Bienvenue {{app.user.username}} </h3>
+                <span class="page-sub-header-sub small">votre dérniére connexion est : 01-03-2016 12:40 AM [UK time (GMT + 6:00hrs)]</span> 
+              </div>
+              <div id="accordion" class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title"> <a href="#collapseB1" data-toggle="collapse"> My details </a> </h4>
+                  </div>
+                  <div class="panel-collapse collapse in" id="collapseB1">
+                    <div class="panel-body">
+                      <form  method="post" action="{{path('User_Update')}}" enctype="multipart/form-data">
+                        <div class="form-group">
+                          <label class="control-label">Votre pseudo</label>
+                          <input class="form-control" name="username" placeholder="Jhon" value="{{app.user.username}}" type="text">
+                        </div>
+                        {#<div class="form-group">
+                          <label class="control-label">Last name</label>
+                          <input class="form-control" placeholder="Doe" type="text">
+                        </div>#}
+                        <div class="form-group">
+                          <label class="control-label">votre adresse mail</label>
+                          <input class="form-control" name="email" placeholder="jhon.deo@example.com" value="{{app.user.email}}" type="email">
+                        </div>
+                        {#<div class="form-group">
+                          <label class="control-label">Address</label>
+                          <input class="form-control" placeholder=".." value="{{app.user.id}}"type="text">
+                        </div>#}
+                        <div class="form-group">
+                          <label for="Phone" class="control-label">téléphone</label>
+                          <input class="form-control" id="Phone" name="tel" placeholder="880 123 456789" value="{{app.user.tel}}" type="text">
+                        </div>
+                       <div  style="border:solid 1px black;border-radius:6px;padding:30px 10px;margin-bottom:25px">
+                          <label class="control-label">Modifier Photo</label>
+                          <input type="file" id="photo" name="photo" style="width:140px;float:right">
+                          
+                        </div>
+                        <img id="ph" src="#" style="float:right;position:relative;top:-100px;right:165px" width=50 height=50>
+                        <div class="form-group hide">
+                          <label class="control-label">Facebook account map</label>
+                          <div class="form-control"> <a class="link" href="fb.com">Jhone.doe</a>
+                            <a class=""> <i class="fa fa-minus-circle"></i></a>
+                          </div>
+                        </div>
+                        <input type="hidden" name="id" value="{{app.user.id}}"/>
+                        <input type="hidden" name="img" value="{{app.user.photo}}"/>
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-common">modifier</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title"> <a aria-expanded="false" class="collapsed" href="#collapseB2" data-toggle="collapse"> Paramétres </a> </h4>
+                  </div>
+                  <div style="height: 0px;" aria-expanded="false" class="panel-collapse collapse" id="collapseB2">
+                    <div class="panel-body">
+                      <form role="form">
+                        <div class="form-group">
+                          <div class="checkbox">
+                            <label><input type="checkbox">Comments are enabled on my ads </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">nouveau mot de passe</label>
+                          <input class="form-control" placeholder="" type="password">
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">confirmer mot de passe</label>
+                          <input class="form-control" placeholder="" type="password">
+                        </div>
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-common">modifier</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title"> <a aria-expanded="false" class="collapsed" href="#collapseB3" data-toggle="collapse"> Preferences </a> </h4>
+                  </div>
+                  <div style="height: 0px;" aria-expanded="false" class="panel-collapse collapse" id="collapseB3">
+                    <div class="panel-body">
+                      <div class="form-group">
+                        <div class="col-sm-12">
+                          <div class="checkbox">
+                            <label><input type="checkbox">Je veux recevoir des Email. </label>
+                          </div>
+                          <div class="checkbox">
+                            <label><input type="checkbox">I want to receive advice on buying and selling. </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>      
+    </div>
+
+
+
+{%endblock%}

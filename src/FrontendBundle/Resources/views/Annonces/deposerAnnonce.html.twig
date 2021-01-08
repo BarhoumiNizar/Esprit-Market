@@ -1,0 +1,398 @@
+{% extends 'FrontendBundle:Main:layout.html.twig' %}
+{%block body%}
+  <script type="text/javascript" src="{{ asset('assets/js/jquery-min.js') }}"></script> 
+   <style>
+    .photo{display:none}
+    </style>
+<script>
+
+    $(window).load(function(){
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+             
+            reader.onload = function (e) {
+                $('#ph').attr('src', e.target.result);
+                
+            }
+             
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+     //$$$$$$$$$$$
+     function readURL1(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+             
+            reader.onload = function (e) {
+               
+                 $('#ph1').attr('src', e.target.result);
+                  
+            }
+             
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    /******************************/
+    function readURL2(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+             
+            reader.onload = function (e) {
+               
+                  $('#ph2').attr('src', e.target.result);
+                  
+            }
+             
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    /***********/
+    function readURL3(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+             
+            reader.onload = function (e) {
+                
+                   $('#ph3').attr('src', e.target.result);
+                   
+            }
+             
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    /*******************/
+    function readURL4(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+             
+            reader.onload = function (e) {
+                
+                    $('#ph4').attr('src', e.target.result);
+            }
+             
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#photo").change(function(){
+      readURL(this);
+    });
+    $("#photo1").change(function(){
+      readURL1(this);
+    });
+    $("#photo2").change(function(){
+      readURL2(this);
+    });
+    $("#photo3").change(function(){
+      readURL3(this);
+    });
+    $("#photo4").change(function(){
+      readURL4(this);
+    });
+});
+    //
+
+</script>
+
+    <!-- Content section Start --> 
+    <section id="content">
+      <div class="container" >
+        <div class="row">
+          <div class="col-sm-12 col-md-9 col-md-offset-2">
+            <div class="page-ads box" style="background:#A9BCF5;border-radius:8px">
+              <h2 class="title-2">
+                déposer une annonce gratuitement
+              </h2>
+              <form class="form-ad" method="post" name="form" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label class="control-label">Categories</label>
+                  
+                  <select class="form-control" id="categorie" name="categorie">
+                  <option>--Choisissez categorie--</option>
+                 <option value="livre">Livre</option>
+                  <option>cours</option>
+                   <option value="evenemment">événemment</option>
+                   <option value="Application">Application</option>
+                   <option value="Telephone">Téléphone</option>
+                   <option value="PC_portable">PC Portable</option>
+                   <option value="Roubotique">Roubotique</option>
+
+                 </select>
+                </div>
+                <br>
+                <div id="accueils">
+                    <table width=100%>
+                    <tr>
+                    <td >
+                     <i class="fa fa-calendar" style="font-size:75px"></i>
+                     </td>
+                     <td>
+                      <i class="fa fa-book"  style="font-size:75px"></i>
+                     </td>
+                     <td>
+                      <i class="fa fa-android"  style="font-size:75px"></i>
+                     </td>
+                     <td>
+                       <i class="fa fa-desktop"  style="font-size:75px"></i>
+                     </td>
+                     <td>
+                      <i class="fa fa-phone"  style="font-size:75px"></i>
+                     </td>
+                     <td>
+                      <i class="fa fa-cogs"  style="font-size:75px"></i>
+                     </td>
+                     <td>
+                      <i class="fa fa-file-pdf-o"  style="font-size:75px"></i>
+                     </td>
+                     </tr>
+                     </table>
+                </div>{# fin #accueils #}
+                <div id="accueil">
+                <div class="form-group">
+                <input type="hidden" name="ip" value="{{ip}}"/>
+                  <label class="control-label" ><span id="objet">Titre</span></label>
+                 <input type="text" id="titre" name="titre" class="form-control input-md" placeholder="taper le titre"/>
+                 <input type="text" id="titres" name="titre" class="form-control input-md" placeholder="taper le nom d'evenement"/>
+                  <span class="help-block">A great title needs at least 60 characters. </span>
+                </div>
+                <div class="form-group" id="niveau">
+                  <label class="control-label">Niveau</label>
+                  
+                  <select class="form-control" id="categorie" name="niveau">
+                 <option value="">--Choisissez niveau--</option>
+                   <option value="GL">Génie Logiciel</option>
+                   <option value="BI">BI</option>
+                   <option value="Telcom">Télécom</option>
+                   <option value="Infini">Infini</option>
+                   <option value="Cloud">Cloud</option>
+
+                 </select>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="textarea">Description Annonce </label>
+                <table width=100%>
+                <tr><td> <i class="fa fa-check-circle"></i></td>
+                <td> <input  type="text" name="desc1" class="form-control" placeholder="1"></td>
+                </tr>
+                <tr><td> <i class="fa fa-check-circle"></i></td>
+                <td> <input  type="text" name="desc2" class="form-control" placeholder="2"></td>
+                </tr>
+                <tr><td> <i class="fa fa-check-circle"></i></td>
+                <td> <input  type="text" name="desc3" class="form-control" placeholder="3"></td>
+                </tr>
+                <tr><td> <i class="fa fa-check-circle"></i></td>
+                <td> <input  type="text" name="desc4" class="form-control" placeholder="4"></td>
+                </tr>
+                <tr><td> <i class="fa fa-check-circle"></i></td>
+                <td> <input  type="text" name="desc5" class="form-control" placeholder="5"></td>
+                </tr>
+                <tr><td> <i class="fa fa-check-circle"></i></td>
+                <td> <input  type="text" name="desc6" class="form-control" placeholder="6"></td>
+                </tr>
+                </table>
+                
+                </div> 
+                <div class="form-group" id="ville">
+                  <label class="control-label" for="seller-Location">ville</label>
+                   <input type="text" list="browsers" name="ville" id="adresse" onchange="TrouverAdresse();"  name="ville" class="form-control input-md" placeholder="taper le lieu"/>
+                   <input type="text" id="text_latlng" name="coord_ville" style="width:800px;display:none"/>
+                   <datalist id="browsers">
+                             
+                              {%for pos in position%}
+                               <option value="{{pos.pos}}">
+                               {%endfor%}
+                              </datalist>
+                <div  id="map-canvas" style="display:none;height:420px;width:65%"></div>
+                  
+                </div>   
+                <div class="form-group">
+                <table width=75% id="evenements">
+              <tr><td >
+                  <label class="control-label" ><span id="objets" style="position:relative; top:10px">Debut Evenement :</span></label>
+                  </td>
+                  <td>
+                 <input type="date" id="date" name="date_debut" class="form-control input-md" placeholder="taper le titre"/>
+                 </td>
+                 <td> <input type="time" id="time" name="time_debut" class="form-control input-md" placeholder="taper le titre"/></td>
+                 </tr>
+                 <tr><td >
+                  <label class="control-label" ><span id="objets" style="position:relative; top:10px">Fin Evenement :</span></label>
+                  </td>
+                  <td>
+                 <input type="date" id="date" name="date_fin" class="form-control input-md" placeholder="taper le titre"/>
+                 </td>
+                 <td> <input type="time" id="time" name="time_fin" class="form-control input-md" placeholder="taper le titre"/></td>
+                 </tr>
+                 </table>
+                  
+                </div> 
+                
+                <div class="form-group" id="prix">
+                  <label class="control-label" for="textarea">Price</label>            
+                  <div class="form-inline">
+                    <div class="form-group">                  
+                      <div class="input-group">                        
+                         <input type="number" name="prix" class="form-control"/>
+                        <span class="input-group-addon addon">$</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-control-static" style="padding: 5px 10px;">or</p>
+                    </div>
+                    <div class="form-group">
+                      <select class="form-control" name="offre">
+                 <option>gratuit</option>
+                 <option>offre</option>
+                 </select>
+                    </div>
+                  </div>
+                </div>
+                 <input type="hidden" value="{{ 'now'|date('Y-m-d H:i:s')}}" name="date_annonce" >
+                <h2 class="title-2" id="fichier">
+                  Classified Picture
+                  
+                </h2>
+                <div class="form-group" id="fichiers">
+                  <label class="control-label" id="image"></label>
+                  <div class="mb15">
+                  
+                    <div class="input-group ">
+                      <div tabindex="-1" class="form-control file-caption">
+                          <div style="width: 239px;" class="file-caption-name">
+                          <img id="ph" src="#"  width=50 height=50 style="position:relative; top:-10px"/>
+                          </div>
+                      </div>
+                      <div class="input-group-btn">
+                        {#<button type="button" class="btn btn-danger fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-ban-circle"></i> Remove</button>#}
+                         <div class="btn btn-success kv-fileinput-upload">
+                         <i class="glyphicon glyphicon-upload"></i> Parcourir 
+                         <input id="photo" name="photo" class="file" data-preview-file-type="text" type="file">
+                         </div><br>
+                          </div>
+                    </div>  
+                        {########################}
+
+                  <div class="input-group ">
+                      <div tabindex="-1" class="form-control file-caption">
+                          <div style="width: 239px;" class="file-caption-name">
+                          <img id="ph1" src="#"  width=50 height=50 style="position:relative; top:-10px"/>
+                          </div>
+                      </div>
+                      <div class="input-group-btn">
+                        {#<button type="button" class="btn btn-danger fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-ban-circle"></i> Remove</button>#}
+                         <div class="btn btn-success kv-fileinput-upload">
+                         <i class="glyphicon glyphicon-upload"></i> Parcourir 
+                         <input id="photo1" name="photo1" class="file" data-preview-file-type="text" type="file">
+                         </div><br>
+                        
+                          </div>
+                    </div> 
+                     {########################}
+
+                     <div class="input-group ">
+                      <div tabindex="-1" class="form-control file-caption">
+                          <div style="width: 239px;" class="file-caption-name">
+                          <img id="ph2" src="#"  width=50 height=50 style="position:relative; top:-10px"/>
+                          </div>
+                      </div>
+                      <div class="input-group-btn">
+                        {#<button type="button" class="btn btn-danger fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-ban-circle"></i> Remove</button>#}
+                         <div class="btn btn-success kv-fileinput-upload">
+                         <i class="glyphicon glyphicon-upload"></i> Parcourir 
+                         <input id="photo2" name="photo2" class="file" data-preview-file-type="text" type="file">
+                         </div><br>
+                        
+                          </div>
+                    </div> 
+                     {########################}
+                     <div class="input-group ">
+                      <div tabindex="-1" class="form-control file-caption">
+                          <div style="width: 239px;" class="file-caption-name">
+                          <img id="ph3" src="#"  width=50 height=50 style="position:relative; top:-10px"/>
+                          </div>
+                      </div>
+                      <div class="input-group-btn">
+                        {#<button type="button" class="btn btn-danger fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-ban-circle"></i> Remove</button>#}
+                         <div class="btn btn-success kv-fileinput-upload">
+                         <i class="glyphicon glyphicon-upload"></i> Parcourir 
+                         <input id="photo3" name="photo3" class="file" data-preview-file-type="text" type="file">
+                         </div><br>
+                        
+                          </div>
+                    </div> 
+                     {########################}
+                     <div class="input-group ">
+                      <div tabindex="-1" class="form-control file-caption">
+                          <div style="width: 239px;" class="file-caption-name">
+                          <img id="ph4" src="#"  width=50 height=50 style="position:relative; top:-10px"/>
+                          </div>
+                      </div>
+                      <div class="input-group-btn">
+                        {#<button type="button" class="btn btn-danger fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-ban-circle"></i> Remove</button>#}
+                         <div class="btn btn-success kv-fileinput-upload">
+                         <i class="glyphicon glyphicon-upload"></i> Parcourir 
+                         <input id="photo4" name="photo4" class="file" data-preview-file-type="text" type="file">
+                         </div><br>
+                        
+                          </div>
+                    </div> 
+                     {########################}
+
+
+
+
+                  </div>
+                                  
+                  
+                 
+                </div>
+                </div>{#fin #accueil #}
+                <h2 class="title-2">
+                  votre details personels
+                </h2>
+                <div class="form-group">
+                  <label class="control-label" for="textarea">nom</label>
+                  <input type="text" name="name" class="form-control" value="{{app.user.username}}" readonly placeholder="Your Name" >
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="textarea">Email</label>
+                  <input type="text" name="email" value="{{app.user.email}}" readonly class="form-control" placeholder="Your Email" >
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="textarea">numéro de téléphone</label>
+                  <input type="text" class="form-control" name="tel" value="{{app.user.tel}}" readonly placeholder="Phone Number">
+                  <input type="Hidden" name="id" value="{{app.user.id}}"/>
+                  <div class="checkbox">
+                    <label><input type="checkbox"> <small>Afficher le numéro</small></label>
+                  </div>
+                </div> 
+                
+                <div class="form-group">
+                  <label class="control-label" for="seller-Location">ville</label>
+                  <select id="Location" name="Location" class="form-control">
+                    <option value="1">Option one</option>
+                    <option value="2">Option two</option>
+                  </select>
+                </div>  
+                <div class="form-group">
+                  <div class="well">
+                    <p></p>
+                    <div class="checkbox">
+                      <label><input checked="checked" type="checkbox"> Sign Up for Newsletter</label>
+                    </div>
+                    <div class="checkbox">
+                      <label><input type="checkbox"> I agree to the <a href="#">Terms of Use</a></label>
+                    </div>
+                    <button type="submit" class="btn btn-common">valider</button>
+                  </div> 
+                </div>                            
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Content section End --> 
+
+    {%endblock%}
